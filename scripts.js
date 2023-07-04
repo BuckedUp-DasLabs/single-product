@@ -96,3 +96,4 @@ noThanksButtonsIds.forEach((id) => {
     window.location.href = noThanksRedirect;
   });
 });
+
