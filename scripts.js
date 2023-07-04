@@ -35,10 +35,9 @@ const postApi = async (url, body) => {
   return responseLog;
 };
 
+const fetchURL = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
+const fetchURLfinal = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}/finish`;
 const buy = async (data) => {
-  const fetchURL = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
-  const fetchURLfinal = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}/finish`;
-
   const body = { order_uuid: orderID, items: [] };
   const item = {};
   item.product_id = prodID;
@@ -72,7 +71,9 @@ if (prodType === "post" || prodType === "finish") {
   };
   buyButtonIds.forEach((id) => {
     const btn = document.getElementById(id);
-    btn.addEventListener("click",()=>{buy(data)});
+    btn.addEventListener("click", () => {
+      buy(data);
+    });
   });
 } else {
   buyButtonIds.forEach((id) => {
@@ -85,8 +86,13 @@ if (prodType === "post" || prodType === "finish") {
 }
 noThanksButtonsIds.forEach((id) => {
   const btn = document.getElementById(id);
-  btn?.addEventListener("click", () => {
+  btn?.addEventListener("click", async () => {
     dataLayerNoThanks();
+    if (prodType === "redirect-finish") {
+      const response = await postApi(fetchURLfinal, null);
+      console.log(response);
+      if (!response) return;
+    }
     window.location.href = noThanksRedirect;
   });
 });

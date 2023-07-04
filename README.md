@@ -12,10 +12,11 @@
 
   //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
 
-  //finish - redirect - post
+  //finish - redirect - post - redirect-finish
   //finish will complete the order.
   //redirect will redirect to another page (like a modal).
   //post will add to the order without finishing.
+  //redirect-finish will redirect if user buys (modalRedirect), finish if user says no (noThanksRedirect).
   const prodType = "post";
   const prodID = 620;
   const buyButtonIds = ["element-41"];
