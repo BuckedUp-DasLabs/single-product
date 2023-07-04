@@ -72,5 +72,5 @@
   //STOP HERE.
   dataLayerStart();
 </script>
-<script src="https://cdn.jsdelivr.net/gh/BuckedUp-DasLabs/single-product@latest/scripts.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/gh/BuckedUp-DasLabs/single-product@latest/scripts.js"></script>
 ```
