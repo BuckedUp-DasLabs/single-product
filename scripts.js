@@ -42,7 +42,6 @@ const buy = async (data) => {
   const body = { order_uuid: orderID, items: [] };
   const item = {};
   item.product_id = prodID;
-  item.price = parseFloat(data.product.price.slice(1));
   item.quantity = 1;
   item.options = {};
   body.items.push(item);
