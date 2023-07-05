@@ -4,6 +4,8 @@ localStorage.setItem("first_page", origin);
 const orderID = urlParams.get("order_uuid");
 
 //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
+const isLP = false;
+
 const page_id = ""; //OG-LP-OMO
 
 const cookies = [{ page_id: page_id }, { offer_id: origin }];
@@ -12,6 +14,8 @@ urlParams.set("step_count", "");
 urlParams.set("step_code", "");
 urlParams.set("from", "");
 urlParams.set("to", "");
+if(isLP)
+  urlParams.set("utm_source","")
 
 //finish - redirect - post - redirect-finish
 //finish will complete the order.
