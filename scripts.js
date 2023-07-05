@@ -1,3 +1,9 @@
+let cookieString = ''
+Object.keys(cookies).forEach(key=>{
+  cookieString = `${cookieString}${key}=${cookies[key]};`
+})
+document.cookie = cookieString
+
 const toggleButton = (buttons) => {
   buttons.forEach((buttonID) => {
     let button = document.getElementById(buttonID);

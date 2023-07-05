@@ -1,15 +1,23 @@
 const urlParams = new URLSearchParams(window.location.search);
 const origin = window.location.pathname.replace("/", "").replace("/", "");
-document.cookie = `offer_id=${origin}; path=/; domain=.buckedup.com;max-age=3600`;
 localStorage.setItem("first_page", origin);
 const orderID = urlParams.get("order_uuid");
 
 //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
+const page_id = ""; //OG-LP-OMO
 
-urlParams.set("step_count","")
-urlParams.set("step_code","")
-urlParams.set("from","")
-urlParams.set("to","")
+const cookies = {
+  "offer_id": origin,
+  "page_id": page_id,
+  "path": "/",
+  "domain": ".buckedup.com",
+  "max-age": 3600,
+}
+
+urlParams.set("step_count", "");
+urlParams.set("step_code", "");
+urlParams.set("from", "");
+urlParams.set("to", "");
 
 //finish - redirect - post - redirect-finish
 //finish will complete the order.
@@ -40,7 +48,7 @@ const setDataLayer = (event, action, value) => {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     step_count: "", //lp, us1, us2, us3, ds1, ty
-    page_id: "", //OG-LP-OMO, pegar pelo query da url, passar pra frente.
+    page_id: page_id, //OG-LP-OMO, 
     version_id: "", //v1-control, v2-dropdown, v2-modal
     event: event, //offer_view, interaction
     action: action, //purchase, purchase-us, click, view_page
