@@ -6,6 +6,11 @@ const orderID = urlParams.get("order_uuid");
 
 //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
 
+urlParams.set("step_count","")
+urlParams.set("step_code","")
+urlParams.set("from","")
+urlParams.set("to","")
+
 //finish - redirect - post - redirect-finish
 //finish will complete the order.
 //redirect will redirect to another page (like a modal).
