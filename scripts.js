@@ -1,8 +1,13 @@
-let cookieString = ''
-Object.keys(cookies).forEach(key=>{
-  cookieString = `${cookieString}${key}=${cookies[key]}; `
-})
-document.cookie = cookieString
+const cookieSettings = "; path=/; domain=.buckedup.com;max-age=3600";
+
+cookies.forEach((cookie) => {
+  let cookieString = "";
+  Object.keys(cookie).forEach((key) => {
+    cookieString = `${key}=${cookie[key]}`;
+  });
+  cookieString = cookieString + cookieSettings;
+  document.cookie = cookieString;
+});
 
 const toggleButton = (buttons) => {
   buttons.forEach((buttonID) => {
@@ -102,4 +107,3 @@ noThanksButtonsIds.forEach((id) => {
     window.location.href = noThanksRedirect;
   });
 });
-

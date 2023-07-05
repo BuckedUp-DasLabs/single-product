@@ -12,13 +12,7 @@
   //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
   const page_id = ""; //OG-LP-OMO
 
-  const cookies = {
-    "offer_id": origin,
-    "page_id": page_id,
-    "path": "/",
-    "domain": ".buckedup.com",
-    "max-age": 3600,
-  }
+  const cookies = [{ page_id: page_id }, { offer_id: origin }];
 
   urlParams.set("step_count", "");
   urlParams.set("step_code", "");
