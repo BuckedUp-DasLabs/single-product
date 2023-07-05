@@ -1,6 +1,6 @@
 let cookieString = ''
 Object.keys(cookies).forEach(key=>{
-  cookieString = `${cookieString}${key}=${cookies[key]};`
+  cookieString = `${cookieString}${key}=${cookies[key]}; `
 })
 document.cookie = cookieString
 
