@@ -1,14 +1,3 @@
-const cookieSettings = "; path=/; domain=.buckedup.com;max-age=3600";
-
-cookies.forEach((cookie) => {
-  let cookieString = "";
-  Object.keys(cookie).forEach((key) => {
-    cookieString = `${key}=${cookie[key]}`;
-  });
-  cookieString = cookieString + cookieSettings;
-  document.cookie = cookieString;
-});
-
 const toggleButton = (buttons) => {
   buttons.forEach((buttonID) => {
     let button = document.getElementById(buttonID);
