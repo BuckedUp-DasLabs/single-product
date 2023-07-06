@@ -82,6 +82,18 @@
   };
 
   //STOP HERE.
+
+  const cookieSettings = "; path=/; domain=.buckedup.com;max-age=3600";
+
+  cookies.forEach((cookie) => {
+    let cookieString = "";
+    Object.keys(cookie).forEach((key) => {
+      cookieString = `${key}=${cookie[key]}`;
+    });
+    cookieString = cookieString + cookieSettings;
+    document.cookie = cookieString;
+  });
+
   dataLayerStart();
 </script>
 <script src="https://cdn.jsdelivr.net/gh/BuckedUp-DasLabs/single-product@latest/scripts.js"></script>
