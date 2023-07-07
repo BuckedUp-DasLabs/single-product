@@ -26,7 +26,7 @@
 
   // DONT CHANGE
   let i = 0;
-  if (prodType === "redirect") {
+  if (prodType === "redirect" || prodType === "redirect-finish") {
     for (id of prodIdArray) {
       urlParams.set(`product${i}`, id);
       i++;
