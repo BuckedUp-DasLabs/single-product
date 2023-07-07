@@ -37,14 +37,15 @@ const postApi = async (url, body) => {
 
 const fetchURL = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
 const fetchURLfinal = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}/finish`;
-const buy = async (data) => {
+const buy = async (dataArray) => {
   const body = { order_uuid: orderID, items: [] };
-  const item = {};
-  item.product_id = prodID;
-  item.quantity = 1;
-  item.options = {};
-  body.items.push(item);
-
+  prodIdArray.forEach((prodID) => {
+    const item = {};
+    item.product_id = prodID;
+    item.quantity = 1;
+    item.options = {};
+    body.items.push(item);
+  });
   const response = await postApi(fetchURL, body);
   console.log(response);
   if (!response) return;
@@ -53,26 +54,33 @@ const buy = async (data) => {
     console.log(response);
     if (!response) return;
   }
-  dataLayerBuy(data);
+  let finalPrice = 0;
+  dataArray.forEach((data) => {
+    finalPrice += parseFloat(data.product.price.slice(1));
+  });
+  dataLayerBuy(`${finalPrice}`);
   window.location.href = finishPostRedirect;
 };
 
-let data = null;
+let dataArray = [];
 
 if (prodType === "post" || prodType === "finish") {
   toggleButton(buyButtonIds);
   window.onload = async () => {
-    data = await fetchProduct(prodID);
-    if (data == null) {
-      alert("There was a problem with your request.");
-      return;
+    for (let prodID of prodIdArray) {
+      let newData = await fetchProduct(prodID);
+      if (newData == null) {
+        alert("There was a problem with your request.");
+        return;
+      }
+      dataArray.push(newData);
     }
     toggleButton(buyButtonIds);
   };
   buyButtonIds.forEach((id) => {
     const btn = document.getElementById(id);
     btn.addEventListener("click", () => {
-      buy(data);
+      buy(dataArray);
     });
   });
 } else {

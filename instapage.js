@@ -4,31 +4,37 @@ localStorage.setItem("first_page", origin);
 const orderID = urlParams.get("order_uuid");
 
 //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
+const prodIdArray = [620, 999];
+
+//finish - redirect - post - redirect-finish
+const prodType = "redirect";
 const isLP = false;
-
+const isModal = false;
 const page_id = ""; //OG-LP-OMO
-
 const cookies = [{ page_id: page_id }, { offer_id: origin }];
 
 urlParams.set("step_count", "");
 urlParams.set("step_code", "");
 urlParams.set("from", "");
 urlParams.set("to", "");
-if(isLP)
-  urlParams.set("utm_source","")
+if (isLP) urlParams.set("utm_source", "");
 
-//finish - redirect - post - redirect-finish
-//finish will complete the order.
-//redirect will redirect to another page (like a modal).
-//post will add to the order without finishing.
-//redirect-finish will redirect if user buys (modalRedirect), finish if user says no (noThanksRedirect).
-const prodType = "post";
-const prodID = 620;
+// DONT CHANGE
+let i = 0;
+if (prodType === "redirect") {
+  for (id of prodIdArray) {
+    urlParams.set(`product${i}`, id);
+    i++;
+  }
+}
+
+//CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
+
 const buyButtonIds = ["element-41"];
 const noThanksButtonsIds = [];
 const finishPostRedirect = `https://www.buckedup.com/extension/misc/upsell/complete?${urlParams}`;
 const noThanksRedirect = ``;
-const modalRedirect = `https://select.buckedup.com/?time=001&discount=og&open=this&product0=${prodID}&${urlParams}&first_page=${origin}&bypass_shipping_protection=1`;
+const modalRedirect = `https://select.buckedup.com/?time=001&discount=og&open=this&${urlParams}&first_page=${origin}&bypass_shipping_protection=1`;
 
 //OFFER STEP:
 // Offer Page: lp
@@ -63,11 +69,11 @@ const dataLayerRedirect = () => {
   setDataLayer((event = ""), (action = ""), (value = 0));
 };
 
-const dataLayerBuy = (data) => {
+const dataLayerBuy = (price) => {
   setDataLayer(
     (event = ""),
     (action = ""),
-    (value = data.product.price.slice(1)) //dont change
+    (value = price) //dont change
   );
 };
 
