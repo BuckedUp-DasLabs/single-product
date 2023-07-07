@@ -9,7 +9,6 @@ const prodIdArray = [620, 999];
 //finish - redirect - post - redirect-finish
 const prodType = "redirect";
 const isLP = false;
-const isModal = false;
 const page_id = ""; //OG-LP-OMO
 const cookies = [{ page_id: page_id }, { offer_id: origin }];
 
