@@ -74,11 +74,11 @@
     setDataLayer((event = ""), (action = ""), (value = 0));
   };
 
-  const dataLayerBuy = (data) => {
+  const dataLayerBuy = (price) => {
     setDataLayer(
       (event = ""),
       (action = ""),
-      (value = data.product.price.slice(1)) //dont change
+      (value = price) //dont change
     );
   };
 
