@@ -11,7 +11,7 @@ const prodType = "redirect";
 const isLP = false;
 const page_id = ""; //OG-LP-OMO
 const version_id = ""
-const cookies = [{ page_id: page_id }, { offer_id: origin }, {version_id: version_id}];
+const cookies = [{ page_id: page_id }, { offer_id: origin }, { version_id: version_id }];
 
 urlParams.set("step_count", "");
 urlParams.set("step_code", "");
@@ -62,23 +62,23 @@ const setDataLayer = (event, action, value) => {
 };
 
 const dataLayerStart = () => {
-  setDataLayer((event = ""), (action = ""), (value = 0));
+  setDataLayer((event = "pageview"), (action = "load"), (value = 0));
 };
 
 const dataLayerRedirect = () => {
-  setDataLayer((event = ""), (action = ""), (value = 0));
+  setDataLayer((event = "offerview"), (action = "viewaction"), (value = 0));
 };
 
 const dataLayerBuy = (price) => {
   setDataLayer(
-    (event = ""),
-    (action = ""),
+    (event = "interaction"),
+    (action = "purchase"),
     (value = price) //dont change
   );
 };
 
 const dataLayerNoThanks = () => {
-  setDataLayer((event = ""), (action = ""), (value = 0));
+  setDataLayer((event = "interaction"), (action = "click"), (value = 0));
 };
 
 //STOP HERE.

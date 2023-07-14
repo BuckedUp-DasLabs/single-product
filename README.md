@@ -68,23 +68,23 @@
   };
 
   const dataLayerStart = () => {
-    setDataLayer((event = ""), (action = ""), (value = 0));
+    setDataLayer((event = "pageview"), (action = "load"), (value = 0));
   };
 
   const dataLayerRedirect = () => {
-    setDataLayer((event = ""), (action = ""), (value = 0));
+    setDataLayer((event = "offerview"), (action = "viewaction"), (value = 0));
   };
 
   const dataLayerBuy = (price) => {
     setDataLayer(
-      (event = ""),
-      (action = ""),
+      (event = "interaction"),
+      (action = "purchase"),
       (value = price) //dont change
     );
   };
 
   const dataLayerNoThanks = () => {
-    setDataLayer((event = ""), (action = ""), (value = 0));
+    setDataLayer((event = "interaction"), (action = "click"), (value = 0));
   };
 
   //STOP HERE.
