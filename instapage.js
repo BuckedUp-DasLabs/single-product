@@ -10,7 +10,8 @@ const prodIdArray = [620, 999];
 const prodType = "redirect";
 const isLP = false;
 const page_id = ""; //OG-LP-OMO
-const cookies = [{ page_id: page_id }, { offer_id: origin }];
+const version_id = ""
+const cookies = [{ page_id: page_id }, { offer_id: origin }, {version_id: version_id}];
 
 urlParams.set("step_count", "");
 urlParams.set("step_code", "");
@@ -52,7 +53,7 @@ const setDataLayer = (event, action, value) => {
   window.dataLayer.push({
     step_count: "", //lp, us1, us2, us3, ds1, ty
     page_id: page_id, //OG-LP-OMO,
-    version_id: "", //v1-control, v2-dropdown, v2-modal
+    version_id: version_id, //v1-control, v2-dropdown, v2-modal
     event: event, //offer_view, interaction
     action: action, //purchase, purchase-us, click, view_page
     value: value, //final purchase value
