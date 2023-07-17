@@ -101,6 +101,6 @@ noThanksButtonsIds.forEach((id) => {
       console.log(response);
       if (!response) return;
     }
-    window.location.href = noThanksRedirect;
+    // window.location.href = noThanksRedirect;
   });
 });
