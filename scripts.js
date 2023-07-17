@@ -99,6 +99,7 @@ noThanksButtonsIds.forEach((id) => {
     if (prodType === "redirect-finish") {
       const response = await postApi(fetchURLfinal, null);
       console.log(response);
+      console.log(`${fetchURLfinal}`)
       if (!response) return;
     }
     // window.location.href = noThanksRedirect;
