@@ -7,31 +7,32 @@ const toggleButton = (buttons) => {
 };
 
 const fetchProduct = async (productID) => {
-  const response = await fetch(
-    `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/list/${productID}`
-  );
-  const data = await response.json();
-  if (!response.ok) {
-    console.log("Error Fetching API");
-    console.log(data);
-    return null;
+  try {
+    const response = await fetch(
+      `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/list/${productID}`
+    );
+    const data = await response.json();
+    return data;
+  } catch {
+    const responseLog = await response.json()
+    console.log(responseLog)
+    window.location.href = finishPostRedirect;
   }
-  return data;
 };
 
 const postApi = async (url, body) => {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  const responseLog = await response.json();
-  if (!response.ok) {
-    alert("There was a problem with your request. Please try again later.");
-    console.log(responseLog);
-    return false;
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  } catch {
+    const responseLog = await response.json();
+    console.log(responseLog)
+    return responseLog
   }
   return responseLog;
 };
@@ -70,10 +71,6 @@ if (prodType === "post" || prodType === "finish") {
   window.onload = async () => {
     for (let prodID of prodIdArray) {
       let newData = await fetchProduct(prodID);
-      if (newData == null) {
-        alert("There was a problem with your request.");
-        return;
-      }
       dataArray.push(newData);
     }
     toggleButton(buyButtonIds);
