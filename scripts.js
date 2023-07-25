@@ -32,10 +32,10 @@ const postApi = async (url, body) => {
     });
     const responseLog = await response.json();
     console.log(responseLog)
+    return responseLog;
   } catch {
-    return responseLog
+    return false;
   }
-  return responseLog;
 };
 
 const fetchURL = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
@@ -51,11 +51,11 @@ const buy = async (dataArray) => {
   });
   const response = await postApi(fetchURL, body);
   console.log(response);
-  if (!response) return;
+  if (!response) window.location.href = finishPostRedirect;
   if (prodType === "finish") {
     const response = await postApi(fetchURLfinal, null);
     console.log(response);
-    if (!response) return;
+    if (!response) window.location.href = finishPostRedirect;
   }
   let finalPrice = 0;
   dataArray.forEach((data) => {
@@ -98,7 +98,7 @@ noThanksButtonsIds.forEach((id) => {
     if (prodType === "redirect-finish") {
       const response = await postApi(fetchURLfinal, null);
       console.log(response);
-      if (!response) return;
+      if (!response) window.location.href = finishPostRedirect;
     }
     window.location.href = noThanksRedirect;
   });
