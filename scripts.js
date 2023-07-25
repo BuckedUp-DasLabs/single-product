@@ -32,6 +32,7 @@ const postApi = async (url, body) => {
     alert("There was a problem with your request. Please try again later.");
     console.log(responseLog);
     console.log(url)
+    console.log(body)
     return false;
   }
   return responseLog;
