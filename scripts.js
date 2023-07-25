@@ -11,10 +11,11 @@ const fetchProduct = async (productID) => {
     const response = await fetch(
       `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/list/${productID}`
     );
+    const responseLog = await response.json()
+    console.log(responseLog)
     const data = await response.json();
     return data;
   } catch {
-    const responseLog = await response.json()
     console.log(responseLog)
     window.location.href = finishPostRedirect;
   }
@@ -29,9 +30,9 @@ const postApi = async (url, body) => {
       },
       body: JSON.stringify(body),
     });
-  } catch {
     const responseLog = await response.json();
     console.log(responseLog)
+  } catch {
     return responseLog
   }
   return responseLog;
