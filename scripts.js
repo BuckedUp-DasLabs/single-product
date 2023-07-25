@@ -11,8 +11,6 @@ const fetchProduct = async (productID) => {
     const response = await fetch(
       `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/list/${productID}`
     );
-    const responseLog = await response.json()
-    console.log(responseLog)
     if (response.status == 500 || response.status == 400)
       window.location.href = "https://buckedup.com"
     if (!response.ok) {
@@ -21,8 +19,9 @@ const fetchProduct = async (productID) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error)
-    window.location.href = finishPostRedirect;
+    alert("Product not found.")
+    console.log(error);
+    return null;
   }
 };
 
@@ -41,7 +40,6 @@ const postApi = async (url, body) => {
     if (!response.ok) {
       throw new Error("Api Post Error.")
     }
-    console.log(responseLog)
     return responseLog;
   } catch (error) {
     console.log(error)
@@ -83,6 +81,8 @@ if (prodType === "post" || prodType === "finish") {
   window.onload = async () => {
     for (let prodID of prodIdArray) {
       let newData = await fetchProduct(prodID);
+      if (newData == null)
+        return;
       dataArray.push(newData);
     }
     toggleButton(buyButtonIds);
