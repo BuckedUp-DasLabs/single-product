@@ -7,33 +7,46 @@ const toggleButton = (buttons) => {
 };
 
 const fetchProduct = async (productID) => {
-  const response = await fetch(
-    `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/list/${productID}`
-  );
-  const data = await response.json();
-  if (!response.ok) {
-    console.log("Error Fetching API");
-    console.log(data);
-    return null;
+  try {
+    const response = await fetch(
+      `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/list/${productID}`
+    );
+    const responseLog = await response.json()
+    console.log(responseLog)
+    if (response.status == 500 || response.status == 400)
+      window.location.href = "https://buckedup.com"
+    if (!response.ok) {
+      throw new Error("Api Fetch Error.")
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error)
+    window.location.href = finishPostRedirect;
   }
-  return data;
 };
 
 const postApi = async (url, body) => {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  const responseLog = await response.json();
-  if (!response.ok) {
-    alert("There was a problem with your request. Please try again later.");
-    console.log(responseLog);
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    const responseLog = await response.json();
+    if (response.status == 500 || response.status == 400)
+      window.location.href = "https://buckedup.com"
+    if (!response.ok) {
+      throw new Error("Api Post Error.")
+    }
+    console.log(responseLog)
+    return responseLog;
+  } catch (error) {
+    console.log(error)
     return false;
   }
-  return responseLog;
 };
 
 const fetchURL = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
@@ -49,11 +62,11 @@ const buy = async (dataArray) => {
   });
   const response = await postApi(fetchURL, body);
   console.log(response);
-  if (!response) return;
+  if (!response) window.location.href = finishPostRedirect;
   if (prodType === "finish") {
     const response = await postApi(fetchURLfinal, null);
     console.log(response);
-    if (!response) return;
+    if (!response) window.location.href = finishPostRedirect;
   }
   let finalPrice = 0;
   dataArray.forEach((data) => {
@@ -70,10 +83,6 @@ if (prodType === "post" || prodType === "finish") {
   window.onload = async () => {
     for (let prodID of prodIdArray) {
       let newData = await fetchProduct(prodID);
-      if (newData == null) {
-        alert("There was a problem with your request.");
-        return;
-      }
       dataArray.push(newData);
     }
     toggleButton(buyButtonIds);
@@ -100,7 +109,7 @@ noThanksButtonsIds.forEach((id) => {
     if (prodType === "redirect-finish") {
       const response = await postApi(fetchURLfinal, null);
       console.log(response);
-      if (!response) return;
+      if (!response) window.location.href = finishPostRedirect;
     }
     window.location.href = noThanksRedirect;
   });
