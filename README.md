@@ -11,6 +11,7 @@
 
   //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
   const prodIdArray = [620, 999];
+  const country = "ca" //if us, erase this line
 
   //finish - redirect - post - redirect-finish
   const prodType = "redirect";

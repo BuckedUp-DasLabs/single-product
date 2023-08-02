@@ -7,10 +7,12 @@ const toggleButton = (buttons) => {
 };
 
 const fetchProduct = async (productID) => {
+  let url = `https://h03ygoadc1.execute-api.us-east-1.amazonaws.com/list/${productID}`
   try {
-    const response = await fetch(
-      `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/list/${productID}`
-    );
+    if (country) url = url + `?country=${country}`
+  } catch { }
+  try {
+    const response = await fetch(url);
     if (response.status == 500 || response.status == 400)
       window.location.href = "https://buckedup.com"
     if (!response.ok) {
@@ -47,10 +49,13 @@ const postApi = async (url, body) => {
   }
 };
 
-const fetchURL = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
-const fetchURLfinal = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}/finish`;
+const fetchURL = `https://h03ygoadc1.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
+const fetchURLfinal = `https://h03ygoadc1.execute-api.us-east-1.amazonaws.com/upsell/${orderID}/finish`;
 const buy = async (dataArray) => {
   const body = { order_uuid: orderID, items: [] };
+  try {
+    if (country) body["country"] = country
+  } catch { }
   prodIdArray.forEach((prodID) => {
     const item = {};
     item.product_id = prodID;
@@ -109,7 +114,7 @@ noThanksButtonsIds.forEach((id) => {
     if (prodType === "redirect-finish") {
       const response = await postApi(fetchURLfinal, null);
       console.log(response);
-      if (!response) window.location.href = finishPostRedirect;
+      if (!response) window.location.href = noThanksRedirect;
     }
     window.location.href = noThanksRedirect;
   });

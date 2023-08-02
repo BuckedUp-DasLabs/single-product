@@ -4,10 +4,11 @@ localStorage.setItem("first_page", origin);
 const orderID = urlParams.get("order_uuid");
 
 //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
-const prodIdArray = [620, 999];
+const prodIdArray = [1104];
+const country = "ca"
 
 //finish - redirect - post - redirect-finish
-const prodType = "post";
+const prodType = "finish";
 const isLP = false;
 const page_id = ""; //OG-LP-OMO
 const cookies = [{ page_id: page_id }, { offer_id: origin }];
