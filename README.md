@@ -54,15 +54,16 @@
   // when user buys on Upsell or Downsell or Final page: purchase-us
   // any other action: click
 
-  const setDataLayer = (event, action, value) => {
+  const setDataLayer = (event, action, value, currency=undefined) => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       step_count: "", //lp, us1, us2, us3, ds1, ty
-      page_id: page_id,
+      page_id: page_id, //OG-LP-OMO,
       version_id: "", //v1-control, v2-dropdown, v2-modal
       event: event, //offer_view, interaction
       action: action, //purchase, purchase-us, click, view_page
       value: value, //final purchase value
+      currency: currency,
       transaction_id: orderID,
     });
   };
@@ -75,11 +76,12 @@
     setDataLayer((event = "offerview"), (action = "viewaction"), (value = 0));
   };
 
-  const dataLayerBuy = (price) => {
+  const dataLayerBuy = (price, currentCurrency) => {
     setDataLayer(
       (event = "interaction"),
       (action = "purchase"),
-      (value = price) //dont change
+      (value = price), //dont change
+      (currency = currentCurrency),
     );
   };
 

@@ -72,10 +72,13 @@ const buy = async (dataArray) => {
     if (!response) window.location.href = finishPostRedirect;
   }
   let finalPrice = 0;
+  let currency = dataArray[0].product.price.match(/([A-Za-z]+)? ?\$(\d+\.\d+)/)[1] || "USD"
   dataArray.forEach((data) => {
-    finalPrice += parseFloat(data.product.price.slice(1));
+    const formatted = data.product.price.match(/([A-Za-z]+)? ?\$(\d+\.\d+)/);
+    const currentPrice = formatted[2]
+    finalPrice += parseFloat(currentPrice)
   });
-  dataLayerBuy(`${finalPrice}`);
+  dataLayerBuy(finalPrice.toFixed(2), currency);
   window.location.href = finishPostRedirect;
 };
 

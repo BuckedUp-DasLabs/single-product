@@ -48,7 +48,7 @@ const modalRedirect = `https://select.buckedup.com/?time=001&discount=og&open=th
 // when user buys on Upsell or Downsell or Final page: purchase-us
 // any other action: click
 
-const setDataLayer = (event, action, value) => {
+const setDataLayer = (event, action, value, currency=undefined) => {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     step_count: "", //lp, us1, us2, us3, ds1, ty
@@ -57,6 +57,7 @@ const setDataLayer = (event, action, value) => {
     event: event, //offer_view, interaction
     action: action, //purchase, purchase-us, click, view_page
     value: value, //final purchase value
+    currency: currency,
     transaction_id: orderID,
   });
 };
@@ -69,11 +70,12 @@ const dataLayerRedirect = () => {
   setDataLayer((event = "offerview"), (action = "viewaction"), (value = 0));
 };
 
-const dataLayerBuy = (price) => {
+const dataLayerBuy = (price, currentCurrency) => {
   setDataLayer(
     (event = "interaction"),
     (action = "purchase"),
-    (value = price) //dont change
+    (value = price), //dont change
+    (currency = currentCurrency),
   );
 };
 
