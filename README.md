@@ -38,9 +38,9 @@
   
   const buyButtonIds = ["element-41"];
   const noThanksButtonsIds = [];
-  const finishPostRedirect = `https://www.buckedup.com/extension/misc/upsell/complete?${urlParams}`;
-  const noThanksRedirect = ``;
-  const modalRedirect = `https://select.buckedup.com/?time=001&discount=og&open=this&product0=${prodID}&${urlParams}&first_page=${origin}&bypass_shipping_protection=1`;
+  let finishPostRedirect = `https://www.buckedup.com/extension/misc/upsell/complete?${urlParams}`;
+  let noThanksRedirect = ``;
+  let modalRedirect = `https://select.buckedup.com/?time=001&discount=og&open=this&product0=${prodID}&${urlParams}&first_page=${origin}&bypass_shipping_protection=1`;
 
   //OFFER STEP:
   // Offer Page: lp

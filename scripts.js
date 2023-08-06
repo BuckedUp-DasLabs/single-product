@@ -1,3 +1,7 @@
+if(isLP && prodType === "redirect"){
+  modalRedirect = modalRedirect + "&clear=true"
+}
+
 const toggleButton = (buttons) => {
   buttons.forEach((buttonID) => {
     let button = document.getElementById(buttonID);

@@ -4,12 +4,12 @@ localStorage.setItem("first_page", origin);
 const orderID = urlParams.get("order_uuid");
 
 //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
-const prodIdArray = [1104];
-const country = "ca"
+const prodIdArray = [988];
+// const country = "ca"
 
 //finish - redirect - post - redirect-finish
-const prodType = "finish";
-const isLP = false;
+const prodType = "redirect";
+const isLP = true;
 const page_id = ""; //OG-LP-OMO
 const cookies = [{ page_id: page_id }, { offer_id: origin }];
 
@@ -34,7 +34,7 @@ const buyButtonIds = ["element-41"];
 const noThanksButtonsIds = [];
 const finishPostRedirect = `https://www.buckedup.com/extension/misc/upsell/complete?${urlParams}`;
 const noThanksRedirect = ``;
-const modalRedirect = `https://select.buckedup.com/?time=001&discount=og&open=this&${urlParams}&first_page=${origin}&bypass_shipping_protection=1`;
+let modalRedirect = `https://www.buckedup.com/cart/add?product_id=988&cc=bbfb1&${urlParams}&first_page=${origin}&bypass_shipping_protection=1`;
 
 //OFFER STEP:
 // Offer Page: lp
