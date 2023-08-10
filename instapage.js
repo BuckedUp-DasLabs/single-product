@@ -8,7 +8,7 @@ const prodIdArray = [988];
 // const country = "ca"
 
 //finish - redirect - post - redirect-finish
-const prodType = "redirect";
+const prodType = "redirect-finish";
 const isLP = true;
 const page_id = ""; //OG-LP-OMO
 const cookies = [{ page_id: page_id }, { offer_id: origin }];
@@ -31,7 +31,7 @@ if (prodType === "redirect" || prodType === "redirect-finish") {
 //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
 
 const buyButtonIds = ["element-41"];
-const noThanksButtonsIds = [];
+const noThanksButtonsIds = ["element-36"];
 const finishPostRedirect = `https://www.buckedup.com/extension/misc/upsell/complete?${urlParams}`;
 const noThanksRedirect = ``;
 let modalRedirect = `https://www.buckedup.com/cart/add?product_id=988&cc=bbfb1&${urlParams}&first_page=${origin}&bypass_shipping_protection=1`;

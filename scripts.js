@@ -56,6 +56,7 @@ const postApi = async (url, body) => {
 const fetchURL = `https://h03ygoadc1.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
 const fetchURLfinal = `https://h03ygoadc1.execute-api.us-east-1.amazonaws.com/upsell/${orderID}/finish`;
 const buy = async (dataArray) => {
+  toggleButton(buyButtonIds);
   const body = { order_uuid: orderID, items: [] };
   try {
     if (country) body["country"] = country
@@ -103,7 +104,7 @@ if (prodType === "post" || prodType === "finish") {
     const btn = document.getElementById(id);
     btn.addEventListener("click", () => {
       buy(dataArray);
-    });
+    },{once : true});
   });
 } else {
   buyButtonIds.forEach((id) => {
@@ -111,7 +112,7 @@ if (prodType === "post" || prodType === "finish") {
     btn.addEventListener("click", () => {
       dataLayerRedirect();
       window.location.href = modalRedirect;
-    });
+    },{once : true});
   });
 }
 noThanksButtonsIds.forEach((id) => {
@@ -119,10 +120,11 @@ noThanksButtonsIds.forEach((id) => {
   btn?.addEventListener("click", async () => {
     dataLayerNoThanks();
     if (prodType === "redirect-finish") {
+      toggleButton(noThanksButtonsIds);
       const response = await postApi(fetchURLfinal, null);
       console.log(response);
       if (!response) window.location.href = noThanksRedirect;
     }
     window.location.href = noThanksRedirect;
-  });
+  },{once: true});
 });
