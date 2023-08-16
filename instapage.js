@@ -4,7 +4,7 @@ localStorage.setItem("first_page", origin);
 const orderID = urlParams.get("order_uuid");
 
 //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
-const prodIdArray = [988];
+const prodIdArray = [1066];
 // const country = "ca"
 
 //finish - redirect - post - redirect-finish

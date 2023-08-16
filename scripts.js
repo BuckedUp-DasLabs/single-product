@@ -112,7 +112,7 @@ if (prodType === "post" || prodType === "finish") {
     btn.addEventListener("click", () => {
       dataLayerRedirect();
       window.location.href = modalRedirect;
-    },{once : true});
+    });
   });
 }
 noThanksButtonsIds.forEach((id) => {
