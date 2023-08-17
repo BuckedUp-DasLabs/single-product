@@ -11,7 +11,7 @@ const toggleButton = (buttons) => {
 };
 
 const fetchProduct = async (productID) => {
-  let url = `https://h03ygoadc1.execute-api.us-east-1.amazonaws.com/list/${productID}`
+  let url = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/list/${productID}`
   try {
     if (country) url = url + `?country=${country}`
   } catch { }
@@ -53,8 +53,8 @@ const postApi = async (url, body) => {
   }
 };
 
-const fetchURL = `https://h03ygoadc1.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
-const fetchURLfinal = `https://h03ygoadc1.execute-api.us-east-1.amazonaws.com/upsell/${orderID}/finish`;
+const fetchURL = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}`;
+const fetchURLfinal = `https://ar5vgv5qw5.execute-api.us-east-1.amazonaws.com/upsell/${orderID}/finish`;
 const buy = async (dataArray) => {
   toggleButton(buyButtonIds);
   const body = { order_uuid: orderID, items: [] };
