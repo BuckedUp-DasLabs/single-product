@@ -8,7 +8,7 @@ const prodIdArray = [1066];
 // const country = "ca"
 
 //finish - redirect - post - redirect-finish
-const prodType = "redirect-finish";
+const prodType = "post";
 const isLP = true;
 const page_id = ""; //OG-LP-OMO
 const cookies = [{ page_id: page_id }, { offer_id: origin }];

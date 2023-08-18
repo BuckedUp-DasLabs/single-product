@@ -102,28 +102,33 @@ if (prodType === "post" || prodType === "finish") {
   };
   buyButtonIds.forEach((id) => {
     const btn = document.getElementById(id);
-    btn.addEventListener("click", () => {
-      buy(dataArray);
+    btn.addEventListener("click", (e) => {
+      if(!btn.hasAttribute("disabled"))
+        buy(dataArray);
     });
   });
 } else {
   buyButtonIds.forEach((id) => {
     const btn = document.getElementById(id);
-    btn.addEventListener("click", () => {
-      dataLayerRedirect();
-      window.location.href = modalRedirect;
+    btn.addEventListener("click", (e) => {
+      if(!btn.hasAttribute("disabled")){
+        dataLayerRedirect();
+        window.location.href = modalRedirect;
+      }
     });
   });
 }
 noThanksButtonsIds.forEach((id) => {
   const btn = document.getElementById(id);
-  btn?.addEventListener("click", async () => {
-    dataLayerNoThanks();
-    if (prodType === "redirect-finish") {
-      const response = await postApi(fetchURLfinal, null);
-      console.log(response);
-      if (!response) window.location.href = noThanksRedirect;
-    }else
-    window.location.href = noThanksRedirect;
+  btn?.addEventListener("click", async (e) => {
+    if(!btn.hasAttribute("disabled")){
+      dataLayerNoThanks();
+      if (prodType === "redirect-finish") {
+        const response = await postApi(fetchURLfinal, null);
+        console.log(response);
+        if (!response) window.location.href = noThanksRedirect;
+      }else
+      window.location.href = noThanksRedirect;
+    }
   });
 });
