@@ -33,6 +33,7 @@ const fetchProduct = async (productID) => {
 
 const postApi = async (url, body) => {
   toggleButton(buyButtonIds);
+  toggleButton(noThanksButtonsIds);
   try {
     const response = await fetch(url, {
       method: "POST",
