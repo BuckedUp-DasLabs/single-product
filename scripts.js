@@ -123,7 +123,7 @@ noThanksButtonsIds.forEach((id) => {
       const response = await postApi(fetchURLfinal, null);
       console.log(response);
       if (!response) window.location.href = noThanksRedirect;
-    }else
+    }
     window.location.href = noThanksRedirect;
   });
 });
