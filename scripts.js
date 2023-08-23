@@ -104,7 +104,8 @@ if (prodType === "post" || prodType === "finish") {
   buyButtonIds.forEach((id) => {
     const btn = document.getElementById(id);
     btn.addEventListener("click", () => {
-      buy(dataArray);
+      if(!btn.hasAttribute("disabled"))
+        buy(dataArray);
     });
   });
 } else {
@@ -120,7 +121,7 @@ noThanksButtonsIds.forEach((id) => {
   const btn = document.getElementById(id);
   btn?.addEventListener("click", async () => {
     dataLayerNoThanks();
-    if (prodType === "redirect-finish") {
+    if (prodType === "redirect-finish" && !btn.hasAttribute("disabled")) {
       const response = await postApi(fetchURLfinal, null);
       console.log(response);
       if (!response) window.location.href = noThanksRedirect;
