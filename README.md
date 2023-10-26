@@ -17,7 +17,7 @@
   const prodType = "redirect";
   const isLP = false;
   const page_id = ""; //OG-LP-OMO
-  const cookies = [{ page_id: page_id }, { offer_id: origin }];
+  const cookiesInstapage = [{ page_id: page_id }, { offer_id: origin }];
 
   urlParams.set("step_count", "");
   urlParams.set("step_code", "");
@@ -89,7 +89,7 @@
 
   const cookieSettings = "; path=/; domain=.buckedup.com;max-age=3600";
 
-  cookies.forEach((cookie) => {
+  cookiesInstapage.forEach((cookie) => {
     let cookieString = "";
     Object.keys(cookie).forEach((key) => {
       cookieString = `${key}=${cookie[key]}`;
