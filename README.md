@@ -10,14 +10,15 @@
   const orderID = urlParams.get("order_uuid");
 
   //CHANGE FROM HERE UNTILL COMMENT SAYING TO STOP.
-  const prodIdArray = [620, 999];
+  const prodIdArray = [620, 999]; //if shopify leave empty
   const country = "ca" //if us, erase this line
 
   //finish - redirect - post - redirect-finish
   const prodType = "redirect";
-  const isLP = false;
+  const isLP = true;
   const page_id = ""; //OG-LP-OMO
-  const cookiesInstapage = [{ page_id: page_id }, { offer_id: origin }];
+  const discountCode = ""
+  const cookiesInstapage = [{ page_id: page_id }, { offer_id: discountCode }];
 
   urlParams.set("step_count", "");
   urlParams.set("step_code", "");
@@ -25,7 +26,7 @@
   urlParams.set("to", "");
   if (isLP) urlParams.set("utm_source", "");
 
-  // DONT CHANGE
+  // REMOVE IF SHOPIFY
   if (prodType === "redirect" || prodType === "redirect-finish") 
     urlParams.set("products",`${prodIdArray}`)
 
@@ -35,7 +36,7 @@
   const noThanksButtonsIds = [];
   let finishPostRedirect = `https://www.buckedup.com/extension/misc/upsell/complete?${urlParams}`;
   let noThanksRedirect = ``;
-  let modalRedirect = `https://select.buckedup.com/?time=001&discount=og&open=this&product0=${prodID}&${urlParams}&first_page=${origin}&bypass_shipping_protection=1`;
+  let modalRedirect = `https://choose.buckedup.com/shopify?products=[[999]]&code=${discountCode}`;
 
   //OFFER STEP:
   // Offer Page: lp
@@ -54,7 +55,7 @@
     window.dataLayer.push({
       step_count: "", //lp, us1, us2, us3, ds1, ty
       page_id: page_id, //OG-LP-OMO,
-      version_id: "", //v1-control, v2-dropdown, v2-modal
+      version_id: discountCode, //v1-control, v2-dropdown, v2-modal
       event: event, //offer_view, interaction
       action: action, //purchase, purchase-us, click, view_page
       value: value, //final purchase value
